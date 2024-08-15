@@ -1,7 +1,7 @@
 import React from 'react';
 import * as THREE from 'three';
 
-const CradleBlock = () => {
+const CradleBlock2 = () => {
   const blockSize = 10;
   const unitHeight = 10;
   const cradleHeight = 2.5;
@@ -44,7 +44,9 @@ const CradleBlock = () => {
     group.add(box);
   }
 
+  group.rotation.y = Math.PI / 2;
+
   return <primitive object={group} />;
 };
 
-export default CradleBlock;
+export default CradleBlock2;
