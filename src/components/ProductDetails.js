@@ -13,10 +13,9 @@ const ProductDetails = ({ product, locate, setLocate }) => {
                 <Text>Aisle ID: {product.aisleId}</Text>
             </View>
             <View style={{}}>
-            <TouchableOpacity onPress={() => setLocate(!locate)} style={locate ? styles.buttonStop : styles.button}>
-                <Text style={styles.buttonText}>{locate ? 'Stop' : 'Locate'}</Text>
-            </TouchableOpacity>
-
+                <TouchableOpacity onPress={() => setLocate(!locate)} style={locate ? styles.buttonStop : styles.button}>
+                    <Text style={styles.buttonText}>{locate ? 'Stop' : 'Locate'}</Text>
+                </TouchableOpacity>
             </View>
         </View>
     );
