@@ -19,3 +19,9 @@ if ( fragmentLog !== undefined ) {
     fragmentLog.trim()
 }
 ```
+
+
+map show
+product point on map
+navigation logic  > camera control > obsticle map, zoom in zoom out 
+text display

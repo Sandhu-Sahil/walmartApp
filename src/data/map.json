@@ -1,0 +1,194 @@
+{
+    "id": "myMap",
+    "objects": [
+        {
+            "type": "wall",
+            "position": [
+                -80,
+                5,
+                160
+            ],
+            "color": 16777215
+        },
+        {
+            "type": "wall",
+            "position": [
+                -70,
+                5,
+                160
+            ],
+            "color": 16777215
+        },
+        {
+            "type": "wall",
+            "position": [
+                -60,
+                5,
+                160
+            ],
+            "color": 16777215
+        },
+        {
+            "type": "wall",
+            "position": [
+                -50,
+                5,
+                160
+            ],
+            "color": 16777215
+        },
+        {
+            "type": "wall",
+            "position": [
+                -40,
+                5,
+                160
+            ],
+            "color": 16777215
+        },
+        {
+            "type": "wall",
+            "position": [
+                -30,
+                5,
+                160
+            ],
+            "color": 16777215
+        },
+        {
+            "type": "wall2",
+            "position": [
+                -20,
+                5,
+                150
+            ],
+            "color": 16777215
+        },
+        {
+            "type": "wall2",
+            "position": [
+                -20,
+                5,
+                130
+            ],
+            "color": 16777215
+        },
+        {
+            "type": "wall2",
+            "position": [
+                -20,
+                5,
+                120
+            ],
+            "color": 16777215
+        },
+        {
+            "type": "wall2",
+            "position": [
+                -20,
+                5,
+                110
+            ],
+            "color": 16777215
+        },
+        {
+            "type": "wall2",
+            "position": [
+                -20,
+                5,
+                140
+            ],
+            "color": 16777215
+        },
+        {
+            "type": "pillar",
+            "position": [
+                -20,
+                5,
+                160
+            ],
+            "color": 16777215
+        },
+        {
+            "type": "cradle",
+            "position": [
+                -30,
+                5,
+                140
+            ],
+            "color": 16777215
+        },
+        {
+            "type": "billingCounter",
+            "position": [
+                -80,
+                5,
+                130
+            ],
+            "color": 16777215
+        },
+        {
+            "type": "squaredAisle",
+            "position": [
+                -50,
+                5,
+                140
+            ],
+            "color": 16777215
+        },
+        {
+            "type": "aisle2",
+            "position": [
+                -40,
+                5,
+                110
+            ],
+            "color": 16777215
+        },
+        {
+            "type": "aisle",
+            "position": [
+                -50,
+                5,
+                110
+            ],
+            "color": 16777215
+        },
+        {
+            "type": "transparent",
+            "position": [
+                -20,
+                5,
+                100
+            ],
+            "color": 16777215
+        },
+        {
+            "type": "wall",
+            "position": [
+                -30,
+                15,
+                160
+            ],
+            "color": 16777215
+        },
+        {
+            "type": "wall",
+            "position": [
+                -40,
+                15,
+                160
+            ],
+            "color": 16777215
+        },
+        {
+            "type": "cradle",
+            "position": [
+                -30,
+                15,
+                140
+            ],
+            "color": 16777215
+        }
+    ]
+}
