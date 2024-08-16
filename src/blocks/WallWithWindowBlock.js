@@ -32,7 +32,7 @@ const WallWithWindowBlock = () => {
 
   return (
     <mesh geometry={geometry} position={wallPosition}>
-      <meshStandardMaterial color="gray" />
+      <meshStandardMaterial color="#F9F9F9" />
     </mesh>
   );
 };
