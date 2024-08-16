@@ -12,7 +12,7 @@ const CradleBlock2 = () => {
   const group = new THREE.Group();
 
   const supportGeometry = new THREE.BoxGeometry(supportThickness, unitHeight, supportThickness);
-  const supportMaterial = new THREE.MeshStandardMaterial({ color: 'gray' });
+  const supportMaterial = new THREE.MeshStandardMaterial({ color: '#96741E' });
 
   const supportPositions = [
     [-blockSize / 2 + supportThickness / 2, 0, -cradleDepth / 2],
@@ -29,14 +29,14 @@ const CradleBlock2 = () => {
 
   for (let i = 0; i < 3; i++) {
     const cradleGeometry = new THREE.BoxGeometry(blockSize - supportThickness, cradleThickness, cradleDepth);
-    const cradleMaterial = new THREE.MeshStandardMaterial({ color: 'orange' });
+    const cradleMaterial = new THREE.MeshStandardMaterial({ color: '#FFDF8B' });
     const cradle = new THREE.Mesh(cradleGeometry, cradleMaterial);
     cradle.position.set(0, i * cradleHeight + cradleHeight / 2 - unitHeight / 2, 0);
     group.add(cradle);
   }
 
   const boxGeometry = new THREE.BoxGeometry(cradleDepth - 1, cradleHeight - 1, cradleDepth - 1);
-  const boxMaterial = new THREE.MeshStandardMaterial({ color: 'brown' });
+  const boxMaterial = new THREE.MeshStandardMaterial({ color: '#FFB35F' });
 
   for (let i = 0; i < 3; i++) {
     const box = new THREE.Mesh(boxGeometry, boxMaterial);
