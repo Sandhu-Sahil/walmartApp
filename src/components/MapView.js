@@ -16,6 +16,7 @@ import CradleBlock2 from '../blocks/CradleBlock2';
 import SquaredAisleBlock from '../blocks/SquaredAisleBlock';
 import BillingCounterBlock from '../blocks/BillingCounterBlock';
 import * as THREE from 'three';
+import PinBlock from '../blocks/PinBlock';
 
 const MapView = ( {aisleId, locate, setLocate }) => {
     const gridSize = 200; // must be a multiple of 10
@@ -257,6 +258,13 @@ const MapView = ( {aisleId, locate, setLocate }) => {
                         return null;
                     }
             })}
+
+            {/* PinBlock at targetPos  */}
+            <mesh position={[targetPos[0], 1, targetPos[2]]} rotation={[-Math.PI / 2, 0, 0]}>
+                <PinBlock args={[10, 10]} />
+                <meshStandardMaterial color="red" transparent />
+            </mesh>
+
 
 
             {path.map((pos, index) => {
