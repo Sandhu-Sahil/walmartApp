@@ -143,7 +143,7 @@ const MapView = ( {aisleId, locate, setLocate }) => {
             // camera.lookAt(new THREE.Vector3(...targetPos));
             // camera.lookAt(...targetPos);
             camera.updateProjectionMatrix();
-        }, [cameraPos, targetPos, camera, cameraQuaternion]);
+        }, [cameraPos, targetPos, camera]);
 
         return null;
     };
