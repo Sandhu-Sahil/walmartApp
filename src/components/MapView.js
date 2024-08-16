@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber/native';
+import React, { useState, useEffect, useRef } from 'react';
+import { Canvas, useThree } from '@react-three/fiber/native';
 import { OrbitControls } from '@react-three/drei';
 import { View, StyleSheet, TouchableOpacity, Text } from 'react-native';
 import AisleBlock from '../blocks/AisleBlock';
@@ -15,24 +15,17 @@ import TransparentBlock from '../blocks/TransparentBlock';
 import CradleBlock2 from '../blocks/CradleBlock2';
 import SquaredAisleBlock from '../blocks/SquaredAisleBlock';
 import BillingCounterBlock from '../blocks/BillingCounterBlock';
+import * as THREE from 'three';
 
-
-const CameraController = ({ zoom }) => {
-    useFrame(({ camera }) => {
-      camera.zoom = zoom;
-      camera.updateProjectionMatrix();
-    });
-    return null;
-};
-
-  
 const MapView = ( {aisleId, locate, setLocate }) => {
     const gridSize = 200; // must be a multiple of 10
     const [objects, setObjects] = useState([]);
     const [cameraPos, setCameraPos] = useState([0, 100, 300]);
+    const [targetPos, setTargetPos] = useState([0, 0, 0]);
     const [startPosition, setStartPosition] = useState(null);
     const [path, setPath] = useState([]);
-    const [zoom, setZoom] = useState(1);
+    const [index, setIndex] = useState(0);
+    // const cameraQuaternion = useRef(new THREE.Quaternion());
 
     useEffect(() => {
         if (startPosition) {
@@ -45,9 +38,6 @@ const MapView = ( {aisleId, locate, setLocate }) => {
         }
     }, [startPosition, locate]);
 
-    console.log(aisleId);
-    console.log(locate);
-    console.log(setLocate);
 
     const generateGrid = (objects) => {
         const grid = {};
@@ -139,15 +129,48 @@ const MapView = ( {aisleId, locate, setLocate }) => {
         return aisle ? aisle.position : null;
     };
 
-    const handleZoomIn = () => setZoom((prev) => Math.min(prev + 1.5, 50));
-    const handleZoomOut = () => setZoom((prev) => Math.max(prev - 1.5, 0.5));
+    const CameraController = () => {
+        const { camera } = useThree();
+
+        // useEffect(() => {
+        //     cameraQuaternion.current.copy(camera.quaternion); // Save the current orientation
+        // }, [cameraQuaternion, camera]);
+      
+
+        useEffect(() => {
+            camera.position.set(...cameraPos);
+            // camera.quaternion.copy(cameraQuaternion.current);
+            // camera.lookAt(new THREE.Vector3(...targetPos));
+            // camera.lookAt(...targetPos);
+            camera.updateProjectionMatrix();
+        }, [cameraPos, targetPos, camera]);
+
+        return null;
+    };
+
+    const handleZoomIn = () => {
+        if (index < path.length - 1) {
+            setCameraPos([path[index][0], 5, path[index][2]+10]);
+            setTargetPos([path[index][0], 5, path[index][2]]);
+            setIndex(index + 1);
+        }
+    };
+
+    const handleZoomOut = () => {
+        if (index > 0) {
+            setCameraPos([path[index - 1][0], 5, path[index - 1][2]+10]);
+            setTargetPos([path[index - 1][0], 5, path[index - 1][2]]);
+            setIndex(index - 1);
+        }
+    };    
+        
 
   return (
     <View style={styles.container}>
-        <Canvas camera={{ position: cameraPos, fov: 50 }}>
+        <Canvas >
+            <CameraController />
             <ambientLight intensity={0.5} />
             <pointLight position={[10, 10, 10]} />
-            <CameraController zoom={zoom} />
 
             <mesh rotation={[-Math.PI / 2, 0, 0]}>
                 <planeGeometry args={[gridSize, gridSize]} />
@@ -256,44 +279,59 @@ const MapView = ( {aisleId, locate, setLocate }) => {
                 dampingFactor={0.2} // Amount of damping
                 rotateSpeed={1}    // Rotation speed
                 panSpeed={0.5}       // Panning speed
+                target={new THREE.Vector3(...targetPos)}  // Set the rotation target to the current target position
             />
 
             {/* <ZoomControls /> */}
         </Canvas>
-        <View style={styles.zoomControls}>
-            <TouchableOpacity onPress={handleZoomIn} style={styles.button}>
-            <Text style={styles.buttonText}>Zoom In</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={handleZoomOut} style={styles.button}>
-            <Text style={styles.buttonText}>Zoom Out</Text>
-            </TouchableOpacity>
-        </View>
+        {
+            locate ? (
+                <View style={styles.zoomControls}>
+                    <TouchableOpacity onPress={handleZoomIn} style={styles.button}>
+                    <Text style={styles.buttonText}>Forward</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={handleZoomOut} style={styles.button}>
+                    <Text style={styles.buttonText}>Backward</Text>
+                    </TouchableOpacity>
+                </View>
+            ) : null
+        }
 
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  zoomControls: {
-    position: 'absolute',
-    bottom: 30,
-    left: 0,
-    right: 0,
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-  },
-  button: {
-    padding: 10,
-    backgroundColor: '#007BFF',
-    borderRadius: 5,
-  },
-  buttonText: {
-    color: 'white',
-    fontSize: 16,
-  },
+    container: {
+        flex: 1,
+    },
+    button: {
+        marginTop: 10,
+        padding: 10,
+        backgroundColor: '#007BFF',
+        borderRadius: 5,
+    },
+
+    zoomControls: {
+        position: 'absolute',
+        bottom: 30,
+        left: 0,
+        right: 0,
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+    },
+
+    buttonStop:{
+        marginTop: 10,
+        padding: 10,
+        backgroundColor: 'red',
+        borderRadius: 5,
+    },
+    buttonText: {
+        color: 'white',
+        textAlign: 'center',
+        fontSize: 16,
+    },
 });
 
 export default MapView;
