@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Canvas, useThree } from '@react-three/fiber/native';
 import { OrbitControls } from '@react-three/drei';
 import { View, StyleSheet, TouchableOpacity, Text } from 'react-native';
@@ -25,6 +25,7 @@ const MapView = ( {aisleId, locate, setLocate }) => {
     const [startPosition, setStartPosition] = useState(null);
     const [path, setPath] = useState([]);
     const [index, setIndex] = useState(0);
+    // const cameraQuaternion = useRef(new THREE.Quaternion());
 
     useEffect(() => {
         if (startPosition) {
@@ -36,6 +37,7 @@ const MapView = ( {aisleId, locate, setLocate }) => {
             }
         }
     }, [startPosition, locate]);
+
 
     const generateGrid = (objects) => {
         const grid = {};
@@ -130,11 +132,18 @@ const MapView = ( {aisleId, locate, setLocate }) => {
     const CameraController = () => {
         const { camera } = useThree();
 
+        // useEffect(() => {
+        //     cameraQuaternion.current.copy(camera.quaternion); // Save the current orientation
+        // }, [cameraQuaternion, camera]);
+      
+
         useEffect(() => {
             camera.position.set(...cameraPos);
+            // camera.quaternion.copy(cameraQuaternion.current);
+            // camera.lookAt(new THREE.Vector3(...targetPos));
             // camera.lookAt(...targetPos);
             camera.updateProjectionMatrix();
-        }, [cameraPos, targetPos]);
+        }, [cameraPos, targetPos, camera, cameraQuaternion]);
 
         return null;
     };
