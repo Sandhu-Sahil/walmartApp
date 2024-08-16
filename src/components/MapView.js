@@ -174,7 +174,10 @@ const MapView = ( {aisleId, locate, setLocate }) => {
 
             <mesh rotation={[-Math.PI / 2, 0, 0]}>
                 <planeGeometry args={[gridSize, gridSize]} />
-                <meshStandardMaterial color="green" />
+                {
+                    // plane ka color
+                }
+                <meshStandardMaterial color='white' />
             </mesh>
 
             {mapData.objects.map((obj) => {
@@ -263,7 +266,7 @@ const MapView = ( {aisleId, locate, setLocate }) => {
                 return (
                 <mesh key={index} position={[pos[0], 1, pos[2]]} rotation={[-Math.PI / 2, 0, 0]}>
                     <planeGeometry args={[10, 10]} />
-                    <meshStandardMaterial color="yellow" transparent />
+                    <meshStandardMaterial color="#05ADE2" transparent />
                 </mesh>
             )
             })}
