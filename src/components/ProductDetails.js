@@ -8,7 +8,7 @@ const ProductDetails = ({ product, locate, setLocate }) => {
         <View style={{ padding: 16, backgroundColor: 'white', borderTopWidth: 1 }}>
             <View style={{ flexDirection: 'column', justifyContent: 'space-between' }}>
                 <Text style={{ fontSize: 18, fontWeight: 'bold' }}>{product.name}</Text>
-                <Text style={{ fontSize: 16, color: 'gray' }}>$ {product.price}</Text>
+                <Text style={{ fontSize: 16, color: 'gray' }}>₹ {product.price}</Text>
                 <Text>{product.description}</Text>
                 <Text>Aisle ID: {product.aisleId}</Text>
             </View>

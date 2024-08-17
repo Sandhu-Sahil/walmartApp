@@ -16,7 +16,7 @@ import CradleBlock2 from '../blocks/CradleBlock2';
 import SquaredAisleBlock from '../blocks/SquaredAisleBlock';
 import BillingCounterBlock from '../blocks/BillingCounterBlock';
 import * as THREE from 'three';
-import PinBlock from '../blocks/PinBlock';
+// import PinBlock from '../blocks/PinBlock';
 
 const MapView = ( {aisleId, locate, setLocate }) => {
     const gridSize = 200; // must be a multiple of 10
@@ -178,7 +178,7 @@ const MapView = ( {aisleId, locate, setLocate }) => {
                 {
                     // plane ka color
                 }
-                <meshStandardMaterial color='white' />
+                <meshStandardMaterial color='#B9A695' />
             </mesh>
 
             {mapData.objects.map((obj) => {
@@ -262,11 +262,11 @@ const MapView = ( {aisleId, locate, setLocate }) => {
                     }
             })}
 
-            {/* PinBlock at targetPos  */}
+            {/* PinBlock at targetPos 
             <mesh position={[targetPos[0], 1, targetPos[2]]} rotation={[-Math.PI / 2, 0, 0]}>
                 <PinBlock args={[10, 10]} />
                 <meshStandardMaterial color="red" transparent />
-            </mesh>
+            </mesh> */}
 
 
 
@@ -274,7 +274,7 @@ const MapView = ( {aisleId, locate, setLocate }) => {
                 return (
                 <mesh key={index} position={[pos[0], 1, pos[2]]} rotation={[-Math.PI / 2, 0, 0]}>
                     <planeGeometry args={[10, 10]} />
-                    <meshStandardMaterial color="#05ADE2" transparent />
+                    <meshStandardMaterial color="yellow" transparent />
                 </mesh>
             )
             })}

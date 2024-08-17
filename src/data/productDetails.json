@@ -3,28 +3,28 @@
       "productId": "P001",
       "name": "Toothpaste",
       "description": "Fluoride toothpaste with mint flavor.",
-      "price": 2.99,
+      "price": 120.99,
       "aisleId": "0.9158499944765603"
   },
   {
       "productId": "P002",
       "name": "Shampoo",
       "description": "Moisturizing shampoo for dry hair.",
-      "price": 5.99,
+      "price": 155.99,
       "aisleId": "0.5136376131184668"
   },
   {
       "productId": "P003",
       "name": "Bread",
       "description": "Whole grain bread.",
-      "price": 1.99,
+      "price": 15.99,
       "aisleId": "0.8216766749401183"
   },
   {
       "productId": "P004",
       "name": "Milk",
       "description": "1 gallon of whole milk.",
-      "price": 3.49,
+      "price": 45.49,
       "aisleId": "0.764067218151327"
   }
 ]
